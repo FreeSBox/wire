@@ -1219,7 +1219,7 @@ local function Parent_Hologram(holo, ent, attachment, bone)
 
 	holo.ent:SetParent(ent)
 
-	if attachment ~= nil then
+	if attachment ~= nil and ent:LookupAttachment(attachment) ~= 0 then
 		holo.ent:Fire("SetParentAttachmentMaintainOffset", attachment, 0.01)
 	end
 end
