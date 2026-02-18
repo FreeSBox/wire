@@ -263,13 +263,23 @@ function ENT:SynthesizeViewData(data)
 			local fromNode = data.Nodes[fromNodeId]
 			local outputNum = connection[2]
 
-			table.insert(viewData.Edges, {
+			local edgeData = {
 				sX = math.Round(fromNode.x + FPGANodeSize),
 				sY = math.Round(fromNode.y + (outputNum - 0.5) * FPGANodeSize),
 				eX = math.Round(node.x),
 				eY = math.Round(node.y + (inputNum - 0.5) * FPGANodeSize),
 				t = FPGATypeEnum[getInputType(gate, inputNum)]
-			})
+			}
+
+			-- Add waypoints if they exist
+			if connection.waypoints and #connection.waypoints > 0 then
+				edgeData.w = {}
+				for _, wp in ipairs(connection.waypoints) do
+					table.insert(edgeData.w, {math.Round(wp[1] + FPGANodeSize / 2), math.Round(wp[2] + FPGANodeSize / 2)})
+				end
+			end
+
+			table.insert(viewData.Edges, edgeData)
 		end
 	end
 
