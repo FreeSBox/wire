@@ -517,7 +517,7 @@ elseif CLIENT then
 			local traceData = util.GetPlayerTrace(LocalPlayer())
 			traceData.filter = { LocalPlayer(), trace.Entity }
 			traceData.collisiongroup = LAST_SHARED_COLLISION_GROUP
-			newTrace = util.TraceLine(traceData)
+			local newTrace = util.TraceLine(traceData)
 			parent = newTrace.Entity
 			if not IsValid(parent) or parent == game.GetWorld() then
 				-- Hit the world, don't update the trace.
@@ -1109,7 +1109,7 @@ elseif CLIENT then
 						local w = 0
 						local h = 0
 						for i=1,#lines do
-							lines[i] = string.Trim(lines[i])
+							lines[i] = WireLib.Trim(lines[i])
 							local ww, hh = surface.GetTextSize( lines[i] )
 							w = math.max(w,ww)
 							h = h + hh + 2
