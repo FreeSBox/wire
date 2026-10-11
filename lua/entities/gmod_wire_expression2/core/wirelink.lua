@@ -365,7 +365,7 @@ e2function array wirelink:readArray(start, size)
 	local ret = {}
 
 	if size > 1000000 then
-		print("readArray is too large, blocking")
+		self:throw("readArray size is too large!")
 		return ret
 	end
 
