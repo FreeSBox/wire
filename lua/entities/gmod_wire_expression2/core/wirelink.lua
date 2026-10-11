@@ -364,6 +364,11 @@ e2function array wirelink:readArray(start, size)
 
 	local ret = {}
 
+	if size > 1000000 then
+		print("readArray is too large, blocking")
+		return ret
+	end
+
 	for i = 1, size do
 		ret[i] = this:ReadCell(start + (i - 1))
 	end
