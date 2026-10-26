@@ -358,10 +358,6 @@ end
 
 e2function array wirelink:readArray(start, size)
 	if size < 0 then return {} end
-	if size > 1000000 then
-		print("E2 readArray size is too large, potential crash attempt by", self.player)
-		return self:throw("readArray size is too large!", {})
-	end
 	if !validWirelink(self, this) or !this.ReadCell then return {} end
 
 	self.prf = self.prf + size
